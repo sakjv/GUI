@@ -1,17 +1,25 @@
 #include <iostream>
 #include <thread>
 #include <atomic>
+#include <cstring>
 #include <windows.h>
 #include "gui.h"
 
 int main() {
     HWND consoleHwnd = GetConsoleWindow();
+    const char* autoStart = getenv("GUI_AUTO_START");
     while (true) {
-        std::cout << "1. Start Process\n2. Exit\n";
-        int choice;
-        std::cin >> choice;
-        if (choice == 2) break;
-        if (choice == 1) {
+        // If GUI_AUTO_START is set, automatically start the process once for testing.
+        if (autoStart && strcmp(autoStart, "1") == 0) {
+            std::cout << "Auto-starting process...\n";
+        } else {
+            std::cout << "1. Start Process\n2. Exit\n";
+            int choice;
+            std::cin >> choice;
+            if (choice == 2) break;
+            if (choice != 1) continue;
+        }
+        if (true) {
             std::atomic<bool> cancelled(false);
             createGUI(consoleHwnd, cancelled);
             std::thread processThread([&]() {
@@ -28,6 +36,8 @@ int main() {
                 }
             });
             processThread.join();
+            // If auto-starting, exit after running once to simplify automated checks
+            if (autoStart && strcmp(autoStart, "1") == 0) break;
         }
     }
     return 0;

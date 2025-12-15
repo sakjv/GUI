@@ -40,10 +40,14 @@ void guiThreadFunc(HWND parent, std::atomic<bool>& cancelled) {
     wc.lpszClassName = "ProgressWindow";
     RegisterClass(&wc);
 
+    // Create as an owned top-level window by passing `parent` as the owner (hWndParent).
     guiWindow = CreateWindowEx(0, "ProgressWindow", "Progress", WS_OVERLAPPEDWINDOW,
-                               CW_USEDEFAULT, CW_USEDEFAULT, 300, 200, NULL, NULL, GetModuleHandle(NULL), &cancelled);
-    SetParent(guiWindow, parent);
-    ShowWindow(guiWindow, SW_SHOW);
+                               CW_USEDEFAULT, CW_USEDEFAULT, 300, 200, parent, NULL, GetModuleHandle(NULL), &cancelled);
+    ShowWindow(guiWindow, SW_SHOWNORMAL);
+    // Ensure the GUI window appears above the console window: briefly make it topmost
+    // then remove topmost so it is not permanently always-on-top.
+    SetWindowPos(guiWindow, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+    SetWindowPos(guiWindow, HWND_NOTOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
     UpdateWindow(guiWindow);
 
     MSG msg;
