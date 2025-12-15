@@ -40,7 +40,7 @@
 ### ✅ Completion Handling
 - [x] Outputs "Process completed" when loop finishes
   - File: `src/main.cpp` (line 29)
-- [x] Menu reappears for next iteration or exit
+- [x] Console prints final status, waits 2s, then exits (no menu shown again)
 
 ### ✅ Build Process
 - [x] Compiles with MinGW g++ 15.2.0
@@ -79,7 +79,7 @@ Status: ✅ SUCCESS
 1. [x] Click Cancel button during progress
 2. [x] Progress stops immediately
 3. [x] Console prints "Process cancelled"
-4. [x] Menu reappears for next action
+4. [x] Console prints final status, waits 2s, then exits (no menu shown again)
 
 ### Test 4: Exit
 - [x] Input "2" exits application cleanly

@@ -36,8 +36,10 @@ int main() {
                 }
             });
             processThread.join();
-            // If auto-starting, exit after running once to simplify automated checks
-            if (autoStart && strcmp(autoStart, "1") == 0) break;
+            // After completion or cancellation, update status (printed by the worker),
+            // wait briefly so the user can read it, then exit the application.
+            Sleep(2000);
+            break;
         }
     }
     return 0;

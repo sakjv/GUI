@@ -43,6 +43,9 @@ A small automated smoke test exists to verify build and run behavior non-interac
 .\scripts\auto_test.ps1
 ```
 
+## Exit Behavior
+When the process completes or is cancelled the console prints the final status, waits 2 seconds for the user to read it, then the application exits (no menu is shown again).
+
 ## Dependencies
 - Win32 API (built-in on Windows)
 - Common Controls (comctl32.lib)

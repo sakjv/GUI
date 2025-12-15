@@ -45,7 +45,7 @@ Write-Host ""
 Write-Host "  4. Test completion:" -ForegroundColor Yellow
 Write-Host "     - Let progress reach 100%" -ForegroundColor White
 Write-Host "     - Console should print: 'Process completed'" -ForegroundColor White
-Write-Host "     - Menu should reappear" -ForegroundColor White
+Write-Host "     - Console will wait 2 seconds then exit (no menu will reappear)" -ForegroundColor White
 Write-Host ""
 Write-Host "  5. Exit:" -ForegroundColor Yellow
 Write-Host "     - Enter '2' to exit application" -ForegroundColor White
