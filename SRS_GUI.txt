@@ -1,0 +1,158 @@
+Project: GUI Progress Bar Controlled by Console 
+
+Objective 
+
+Design a C++ application that combines a console interface with a GUI progress bar window. The goal is to simulate a process that updates progress visually, allows cancellation, and communicates the result back to the console. 
+
+Shape 
+
+Requirements 
+
+Console Application 
+
+Displays a simple menu:  
+
+Start Process 
+
+Exit 
+
+When the user selects Start Process, a dummy process begins:  
+
+Simulates progress from 0% to 100% over time. 
+
+Updates a GUI progress bar. 
+
+Can be cancelled by the user via the GUI. 
+
+Progress Bar GUI 
+
+A separate window that includes:  
+
+A visual progress bar. 
+
+A Cancel button. 
+
+The window should:  
+
+Appear above the console window when the console is active. 
+
+Not stay on top of other applications (i.e., not globally “always on top”). 
+
+Clarification: Window Behavior 
+
+The progress bar window should behave like a child or dependent window of the console. This means: 
+
+When the console window is active, the progress bar window should appear above it, making it visible and interactive. 
+
+When the user switches to another application (e.g., Chrome), the progress bar window should not remain visible—it should go behind the other application windows, just like the console does. 
+
+When the user switches back to the console, the progress bar window should reappear above the console, allowing the user to interact with it again. 
+
+This behavior ensures the progress bar is helpful without being intrusive. 
+
+Shape 
+
+Functional Requirements 
+
+updateProgress(int percent): Updates the progress bar. 
+
+closeWindow(): Closes the progress bar window. 
+
+isCancelled(): Returns true if the user clicked Cancel. 
+
+Shape 
+
+Exercise Instructions – Additional Requirement 
+
+As part of your submission, please include a design document that describes your solution. This document should cover: 
+
+Requirements  
+
+Architecture 
+
+Key components and their responsibilities 
+
+Technologies, frameworks, or libraries you used (and why) 
+
+Whether the code is cross-platform 
+
+Shape 
+
+Implementation Guidelines 
+
+1. Console-Based Host 
+
+Start with a console application that displays a simple menu: 
+
+1. Start Process 
+
+2. Exit 
+The user should select “Start Process” from the console to begin. 
+A screenshot of a computer
+
+AI-generated content may be incorrect. 
+
+2. Separate GUI Window 
+
+When the process starts, launch a separate GUI window for the progress bar. 
+The GUI should include: 
+
+A progress bar showing 0–100%. 
+
+A Cancel button to stop the process. 
+
+The GUI window should behave like a child of the console window: 
+
+Appears above the console when the console is active. 
+
+Does not stay globally on top of other applications. 
+
+When the console loses focus, the GUI should go behind other windows. 
+
+Use child-parent window linking (e.g., Win32 SetWindowLongPtr or equivalent) so the GUI is logically tied to the console window. 
+
+4. Threaded Process 
+
+Run the simulated process in a separate thread. 
+Update the progress bar from this thread. 
+
+5. Cancellation & Feedback 
+
+If the user clicks Cancel, stop the process immediately. 
+After completion or cancellation, report the result back to the console (e.g., “Process completed” or “Process cancelled”). 
+
+Shape 
+
+Submission Instructions 
+
+Please submit the following: 
+
+1. Executable 
+
+Provide a standalone executable that can run on a clean Windows machine without requiring an installer. 
+
+To avoid issues with missing dependencies:  
+
+Statically link the runtime libraries  
+
+Or, include any required DLLs in the same folder as the .exe. 
+
+2. Source Code 
+
+Include all relevant source files, headers, and project files (e.g., .cpp, .h, .vcxproj, .sln). 
+
+Organize the code in a clear folder structure. 
+
+Add a short README.txt or README.md explaining: RT 
+
+How to build the project. 
+
+Any dependencies or build instructions. 
+
+Which GUI framework (if any) was used. 
+
+3. Design Document 
+
+4. Packaging the Submission 
+
+Zip the entire project folder (including the executable and source code).
