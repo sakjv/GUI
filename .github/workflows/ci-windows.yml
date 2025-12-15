@@ -1,0 +1,27 @@
+name: CI - Windows
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          update: true
+          install: |
+            mingw-w64-x86_64-gcc
+      - name: Add msys mingw to PATH
+        shell: powershell
+        run: |
+          $env:Path = "C:\msys64\mingw64\bin;" + $env:Path
+          Write-Host "PATH updated"
+      - name: Run automated test
+        shell: powershell
+        run: powershell -NoProfile -ExecutionPolicy Bypass -File .\scripts\auto_test.ps1
