@@ -16,7 +16,7 @@ The application is structured as a single executable with the following componen
 ## Key Components and Responsibilities
 
 - **main.cpp**: Entry point, manages console menu, launches threads for process and GUI.
-- **gui.h/gui.cpp**: Defines GUI creation, progress updates, window management, and cancellation handling.
+- **gui.h/gui.cpp**: Defines GUI creation, progress updates (`updateProgress`), window management (`closeWindow`), and cancellation handling (`isCancelled`).
 - **Process Thread**: Simulates progress by updating the progress bar at intervals, checks for cancellation.
 - **GUI Thread**: Creates and manages the GUI window, processes messages, handles cancel button.
 

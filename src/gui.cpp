@@ -74,3 +74,8 @@ void closeWindow() {
         PostMessage(guiWindow, WM_CLOSE, 0, 0);
     }
 }
+
+bool isCancelled() {
+    if (cancelledPtr) return *cancelledPtr;
+    return false;
+}

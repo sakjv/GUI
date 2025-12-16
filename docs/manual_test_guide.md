@@ -15,12 +15,38 @@ If you don't have a compiler, run:
 
 Quick build
 
+Using bundled MinGW (recommended / tested) ✅
+
 ```powershell
-# Make MinGW first on PATH for the session (optional)
+# Make the bundled MinGW first on PATH for the session (PowerShell)
 $env:Path = "$PWD\tools\mingw64\bin;$env:Path"
 
-# Full rebuild (MinGW g++)
-g++ -o build/gui.exe src/main.cpp src/gui.cpp -I include -static -lcomctl32 -lgdi32 -luser32
+# Full rebuild using the bundled g++ (explicit path is recommended to avoid PATH issues)
+& "$PWD\tools\mingw64\bin\g++.exe" -o build\gui.exe src\main.cpp src\gui.cpp -I include -static -lcomctl32 -lgdi32 -luser32
+
+# Or simply run the repository build script (it will detect g++ or cl):
+.\build.bat
+```
+
+Using MSVC (`cl`) (optional)
+
+```powershell
+# Open the 'x64 Native Tools Command Prompt for VS' or 'Developer Command Prompt'
+# Then run (example):
+cl /MT src\main.cpp src\gui.cpp user32.lib comctl32.lib /Fe:build\gui.exe
+
+# Or use the included VS Code task:
+# - Run 'Tasks: Run Task' -> 'Build GUI Project'
+```
+
+Quick checks
+
+```powershell
+# Verify g++ (bundled):
+& "$PWD\tools\mingw64\bin\g++.exe" --version
+
+# Verify cl (MSVC) is on PATH:
+where cl
 ```
 
 Stop running instances (exe lock) if necessary:
@@ -51,6 +77,7 @@ Interactive helper:
 ```
 
 Notes
+- Tested toolchain: the **bundled MinGW** (`tools/mingw64`) builds successfully in this repo; MSVC `cl` is not on PATH by default on this system. If you prefer MSVC, open the **Developer Command Prompt** so `cl` is available.
 - Keep console visible (do not use `-mwindows`) to be able to interact with the menu.
 - Use `taskkill` if the executable is locked while rebuilding.
 

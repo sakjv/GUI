@@ -21,7 +21,9 @@ A C++ application combining a console menu with a GUI progress bar. It simulates
 
 ### Using MinGW
 1. Install MinGW with g++.
-2. Run: `g++ -o build/gui.exe src/main.cpp src/gui.cpp -mwindows -static -lcomctl32 -lgdi32 -luser32`
+2. Run: `g++ -o build/gui.exe src/main.cpp src/gui.cpp -static -lcomctl32 -lgdi32 -luser32`
+
+Note: Do NOT use `-mwindows` for this project since the console must remain visible for the menu and status messages; `-mwindows` hides the console window.
 
 ## Automated installer (Windows)
 
