@@ -19,6 +19,8 @@ A C++ application combining a console menu with a GUI progress bar. It simulates
 2. Navigate to the project root.
 3. Compile with: `cl /MT src\main.cpp src\gui.cpp user32.lib comctl32.lib /Fe:build\gui.exe`
 
+Or open the provided Visual Studio solution in `vs/GUI.sln` (Visual Studio 2022 recommended) and build the `Release` or `Debug` configuration.
+
 ### Using MinGW
 1. Install MinGW with g++.
 2. Run: `g++ -o build/gui.exe src/main.cpp src/gui.cpp -static -lcomctl32 -lgdi32 -luser32`
